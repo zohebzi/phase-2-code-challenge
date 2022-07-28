@@ -1,22 +1,29 @@
 import React from "react";
 
-function Planeteer() {
+function Planeteer({ planeteer }) {
+
+  const [isBio, setIsBio] = useState(true)
+  function handleClick() {
+    setIsBio(!isBio)
+  }
+
+
   return (
     <li className="cards__item">
       <div className="card">
-        <img
-          src={"RENDER IMAGE"}
-          alt={"RENDER PERSON NAME"}
+        <img onClick={handleClick}
+          src={planeteer.pictureUrl}
+          alt={planeteer.name}
           className="card__image"
         />
         <div className="card__content">
-          <div className="card__title">{"RENDER NAME"}</div>
-          <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+          <div className="card__title">{planeteer.name}</div>
+          <p className="card__text">{isBio ? planeteer.bio : planeteer.quote}</p>
           <div className="card__detail">
-            <p>{"RENDER TWITTER HANDLE"}</p>
+            <p>{planeteer.twitter}</p>
             <p>
               {
-                "CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"
+                planeteer.fromUSA ? "USA-based" : "Working overseas"
               }
             </p>
           </div>
